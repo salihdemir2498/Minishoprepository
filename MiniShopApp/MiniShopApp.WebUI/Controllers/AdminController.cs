@@ -31,6 +31,12 @@ namespace MiniShopApp.WebUI.Controllers
         {
             return View(_productService.GetAll());
         }
+
+        public IActionResult CategoryList()
+        {
+            return View(_categoryService.GetAll());
+        }
+
         public IActionResult ProductCreate()
         {
             ViewBag.Categories = _categoryService.GetAll();
@@ -80,6 +86,39 @@ namespace MiniShopApp.WebUI.Controllers
             return View(model);
 
         }
+
+        public IActionResult CategoryCreate()
+        {
+            ViewBag.Categories = _categoryService.GetAll();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CategoryCreate(CategoryModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var url = JobManager.MakeUrl(model.Name);
+
+                var category = new Category()
+                {
+                    Name = model.Name,
+                    Url = url,
+                    Description=model.Description
+
+                };
+                _categoryService.Create(category);
+
+                CreateMessage("Kategori eklenmiştir", "success");
+                return RedirectToAction("CategoryList");
+            }
+            
+            ViewBag.Categories = _categoryService.GetAll();
+            return View(model);
+
+        }
+
+
+
         public IActionResult ProductEdit(int? id)
         {
             var entity = _productService.GetByIdWithCategories((int)id);
@@ -123,6 +162,13 @@ namespace MiniShopApp.WebUI.Controllers
             var entity = _productService.GetById(productId);
             _productService.Delete(entity);
             return RedirectToAction("ProductList");
+        }
+
+        public IActionResult CategoryDelete(int categoryId)
+        {
+            var entity = _categoryService.GetById(categoryId);
+            _categoryService.Delete(entity);
+            return RedirectToAction("CategoryList");
         }
 
         private void CreateMessage(string message, string alertType)

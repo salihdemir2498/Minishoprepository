@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +10,7 @@ using MiniShopApp.Business.Abstract;
 using MiniShopApp.Business.Concrete;
 using MiniShopApp.Data.Abstract;
 using MiniShopApp.Data.Concrete.EfCore;
+using MiniShopApp.WebUI.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +30,11 @@ namespace MiniShopApp.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlite("Data Source=MiniShopAppDb"));
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
+
+            //Burada Identity ile ilgili çeþitli seçenekleri tanýmlayacaðýz.
+
             services.AddScoped<IProductRepository, EfCoreProductRepository>();
             services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
             services.AddScoped<IProductService, ProductManager>();
@@ -59,6 +67,18 @@ namespace MiniShopApp.WebUI
 
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapControllerRoute(
+                    name: "admincategoriescreate",
+                    pattern: "admin/categories/create",
+                    defaults: new { controller = "Admin", action = "CategoryCreate" }
+                    );
+
+                endpoints.MapControllerRoute(
+                    name: "admincategories",
+                    pattern: "admin/categories",
+                    defaults: new { controller = "Admin", action = "CategoryList" }
+                    );
 
                 endpoints.MapControllerRoute(
                     name: "adminproductcreate",
