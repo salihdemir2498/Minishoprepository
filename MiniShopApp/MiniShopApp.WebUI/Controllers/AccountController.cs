@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MiniShopApp.WebUI.EmailServices;
 using MiniShopApp.WebUI.Identity;
 using MiniShopApp.WebUI.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,13 @@ namespace MiniShopApp.WebUI.Controllers
     {
         private UserManager<User> _userManager;
         private SignInManager<User> _signInManager;
+        private IEmailSender _emailSender;
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailSender emailSender)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _emailSender = emailSender;
+        }
         public IActionResult Index()
         {
             return View();
@@ -66,10 +75,44 @@ namespace MiniShopApp.WebUI.Controllers
                     token = code
                 });
                 //mail gönderme işlemleri
+                await _emailSender.SendEmailAsync(model.Email,"MiniShopApp Hesap Onaylama", $"Lütfen email hesabınızı onaylamak için <a href='https://localhost:5001{url}'>tıklayınız.</a>");
 
+                return RedirectToAction("Login","Account");
 
             }
+            CreateMessage("Hesabınız onaylanamadı.", "danger");
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (userId==null && token==null)
+            {
+                return View();
+            }
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                var result = await _userManager.ConfirmEmailAsync(user, token);
+                if (result.Succeeded)
+                {
+                    CreateMessage("Hesabınız onaylanmıştır.","success");
+                    return View();
+                }
+            }
+            CreateMessage("Hesabınız onaylanamadı.Lütfen bilgileri kontrol ederek,yeniden deneyiniz.","danger");
             return View();
+        }
+
+        private void CreateMessage(string message, string alertType)
+        {
+            var msg = new AlertMessage()
+            {
+                Message = message,
+                AlertType = alertType
+            };
+            TempData["Message"] = JsonConvert.SerializeObject(msg);
         }
     }
 }
