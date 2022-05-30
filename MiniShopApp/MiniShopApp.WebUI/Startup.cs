@@ -56,6 +56,12 @@ namespace MiniShopApp.WebUI
 
             });
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/account/login";
+                options.LogoutPath = "/account/logout";
+            });
+
             services.AddScoped<IEmailSender, SmtpEmailSender>(i => new SmtpEmailSender(
                 Configuration["EmailSender:Host"],
                 Configuration.GetValue<int>("EmailSender:Port"),
@@ -63,7 +69,6 @@ namespace MiniShopApp.WebUI
                 Configuration["EmailSender:UserName"],
                 Configuration["EmailSender:Password"]
                 ));
-
             services.AddScoped<IProductRepository, EfCoreProductRepository>();
             services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
             services.AddScoped<IProductService, ProductManager>();

@@ -54,6 +54,7 @@ namespace MiniShopApp.WebUI.Controllers
             {
                 return View(model);
             }
+
             var user = new User()
             {
                 FirstName = model.FirstName,
@@ -76,8 +77,9 @@ namespace MiniShopApp.WebUI.Controllers
                 });
                 //mail gönderme işlemleri
                 await _emailSender.SendEmailAsync(model.Email, "MiniShopApp Hesap Onaylama", $"Lütfen email hesabınızı onaylamak için <a href='https://localhost:5001{url}'>tıklayınız.</a>");
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Account"); 
             }
+
             CreateMessage("Bir sorun oluştu, lütfen tekrar deneyiniz", "danger");
             return View(model);
         }
@@ -88,6 +90,7 @@ namespace MiniShopApp.WebUI.Controllers
             {
                 return View();
             }
+
             var user = await _userManager.FindByIdAsync(userId);
             if (user!=null)
             {
@@ -98,6 +101,7 @@ namespace MiniShopApp.WebUI.Controllers
                     return View();
                 }
             }
+
             CreateMessage("Hesabınız onaylanamadı. Lütfen bilgileri kontrol ederek, yeniden deneyiniz!","warning");
             return View();
         }
