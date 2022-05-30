@@ -75,35 +75,33 @@ namespace MiniShopApp.WebUI.Controllers
                     token = code
                 });
                 //mail gönderme işlemleri
-                await _emailSender.SendEmailAsync(model.Email,"MiniShopApp Hesap Onaylama", $"Lütfen email hesabınızı onaylamak için <a href='https://localhost:5001{url}'>tıklayınız.</a>");
-
-                return RedirectToAction("Login","Account");
-
+                await _emailSender.SendEmailAsync(model.Email, "MiniShopApp Hesap Onaylama", $"Lütfen email hesabınızı onaylamak için <a href='https://localhost:5001{url}'>tıklayınız.</a>");
+                return RedirectToAction("Login", "Account");
             }
-            CreateMessage("Hesabınız onaylanamadı.", "danger");
-
+            CreateMessage("Bir sorun oluştu, lütfen tekrar deneyiniz", "danger");
             return View(model);
         }
 
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
-            if (userId==null && token==null)
+            if (userId==null || token == null)
             {
                 return View();
             }
             var user = await _userManager.FindByIdAsync(userId);
-            if (user != null)
+            if (user!=null)
             {
                 var result = await _userManager.ConfirmEmailAsync(user, token);
                 if (result.Succeeded)
                 {
-                    CreateMessage("Hesabınız onaylanmıştır.","success");
+                    CreateMessage("Hesabınız onaylanmıştır","success");
                     return View();
                 }
             }
-            CreateMessage("Hesabınız onaylanamadı.Lütfen bilgileri kontrol ederek,yeniden deneyiniz.","danger");
+            CreateMessage("Hesabınız onaylanamadı. Lütfen bilgileri kontrol ederek, yeniden deneyiniz!","warning");
             return View();
         }
+
 
         private void CreateMessage(string message, string alertType)
         {

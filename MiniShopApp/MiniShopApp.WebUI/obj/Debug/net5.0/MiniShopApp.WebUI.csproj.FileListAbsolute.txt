@@ -1,11 +1,3 @@
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.csproj.AssemblyReference.cache
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.GeneratedMSBuildEditorConfig.editorconfig
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.AssemblyInfoInputs.cache
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.AssemblyInfo.cs
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.csproj.CoreCompileInputs.cache
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.MvcApplicationPartsAssemblyInfo.cache
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.RazorAssemblyInfo.cache
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.RazorAssemblyInfo.cs
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\appsettings.Development.json
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\appsettings.json
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\MiniShopApp.WebUI.exe
@@ -60,6 +52,14 @@ D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\MiniShopApp.Business.pdb
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\MiniShopApp.Data.pdb
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\MiniShopApp.Entity.pdb
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.csproj.AssemblyReference.cache
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.AssemblyInfoInputs.cache
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.AssemblyInfo.cs
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.csproj.CoreCompileInputs.cache
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.MvcApplicationPartsAssemblyInfo.cache
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.RazorAssemblyInfo.cache
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.RazorAssemblyInfo.cs
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\staticwebassets\MiniShopApp.WebUI.StaticWebAssets.Manifest.cache
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\staticwebassets\MiniShopApp.WebUI.StaticWebAssets.xml
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\scopedcss\bundle\MiniShopApp.WebUI.styles.css

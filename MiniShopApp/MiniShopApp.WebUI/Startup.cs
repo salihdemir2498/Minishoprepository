@@ -56,11 +56,13 @@ namespace MiniShopApp.WebUI
 
             });
 
-            //services.AddScoped<IEmailSender, SmtpEmailSender>(i => new SmtpEmailSender(
-            //    Configuration["EmailSender:Host"],
-            //    Configuration.GetValue<int>("EmailSender:Port"),
-            //    Configuration.GetValue<bool>("EmailSender")
-            //    ));
+            services.AddScoped<IEmailSender, SmtpEmailSender>(i => new SmtpEmailSender(
+                Configuration["EmailSender:Host"],
+                Configuration.GetValue<int>("EmailSender:Port"),
+                Configuration.GetValue<bool>("EmailSender:EnableSSL"),
+                Configuration["EmailSender:UserName"],
+                Configuration["EmailSender:Password"]
+                ));
 
             services.AddScoped<IProductRepository, EfCoreProductRepository>();
             services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
@@ -87,7 +89,7 @@ namespace MiniShopApp.WebUI
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();
