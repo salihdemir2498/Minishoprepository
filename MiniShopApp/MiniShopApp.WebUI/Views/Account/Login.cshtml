@@ -3,6 +3,7 @@
     <hr />
     <form asp-controller="Account" asp-action="Login" method="post">
         <div class="row">
+            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
             <div class="col-md-6">
                 <div asp-validation-summary="All" class="text-danger">
                     <div class="form-group row mb-2">
@@ -19,7 +20,7 @@
                             <label asp-for="Password" class="col-form-label"></label>
                         </div>
                         <div class="col-sm-9">
-                            <input asp-for="Password" type="text" class="form-control" />
+                            <input asp-for="Password" class="form-control" />
                         </div>
                     </div>
 

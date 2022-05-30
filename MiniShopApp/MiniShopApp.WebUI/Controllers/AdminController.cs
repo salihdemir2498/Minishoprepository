@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MiniShopApp.Business.Abstract;
 using MiniShopApp.Business.Concrete;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace MiniShopApp.WebUI.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly IProductService _productService;
@@ -27,6 +29,8 @@ namespace MiniShopApp.WebUI.Controllers
         {
             return View();
         }
+
+        //[Authorize] //login yapan görür
         public IActionResult ProductList()
         {
             return View(_productService.GetAll());
