@@ -31,7 +31,7 @@ namespace MiniShopApp.WebUI.EmailServices
             return client.SendMailAsync(
                 new MailMessage(this._userName, email, subject, htmlMessage)
                 {
-                    IsBodyHtml = true
+                    IsBodyHtml = true  
                 });
             
         }

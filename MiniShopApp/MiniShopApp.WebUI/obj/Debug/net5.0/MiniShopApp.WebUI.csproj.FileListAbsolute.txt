@@ -186,3 +186,6 @@ D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\ref\MiniShopApp.WebUI.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.pdb
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.genruntimeconfig.cache
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\Razor\Views\Account\ForgotPassword.cshtml.g.cs
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\Razor\Views\Account\ResetPassword.cshtml.g.cs
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\Razor\Views\Admin\RoleCreate.cshtml.g.cs
