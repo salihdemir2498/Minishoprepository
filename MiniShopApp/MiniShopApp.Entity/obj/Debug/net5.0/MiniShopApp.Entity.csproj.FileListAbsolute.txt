@@ -2,7 +2,6 @@ D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Entity\bi
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Entity\bin\Debug\net5.0\MiniShopApp.Entity.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Entity\bin\Debug\net5.0\ref\MiniShopApp.Entity.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Entity\bin\Debug\net5.0\MiniShopApp.Entity.pdb
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Entity\obj\Debug\net5.0\MiniShopApp.Entity.csproj.AssemblyReference.cache
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Entity\obj\Debug\net5.0\MiniShopApp.Entity.GeneratedMSBuildEditorConfig.editorconfig
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Entity\obj\Debug\net5.0\MiniShopApp.Entity.AssemblyInfoInputs.cache
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Entity\obj\Debug\net5.0\MiniShopApp.Entity.AssemblyInfo.cs

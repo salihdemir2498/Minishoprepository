@@ -99,3 +99,4 @@ D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.pdb
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.genruntimeconfig.cache
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\Razor\Views\Admin\UserList.cshtml.g.cs
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\Razor\Views\Admin\UserEdit.cshtml.g.cs
