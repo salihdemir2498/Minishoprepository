@@ -112,6 +112,12 @@ namespace MiniShopApp.WebUI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                   name: "adminuserlist",
+                   pattern: "admin/user/list",
+                   defaults: new { controller = "Admin", action = "UserList" }
+                   );
+
+                endpoints.MapControllerRoute(
                     name: "adminrolelist",
                     pattern: "admin/role/list",
                     defaults: new { controller = "Admin", action = "RoleList" }
