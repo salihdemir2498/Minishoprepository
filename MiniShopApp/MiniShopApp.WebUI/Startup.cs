@@ -54,7 +54,6 @@ namespace MiniShopApp.WebUI
 
                 //SignIn
                 options.SignIn.RequireConfirmedEmail = true;
-
             });
 
             services.ConfigureApplicationCookie(options =>
@@ -63,12 +62,12 @@ namespace MiniShopApp.WebUI
                 options.LogoutPath = "/account/logout";
                 options.AccessDeniedPath = "/account/accessdenied";
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-                options.SlidingExpiration = true; //20 dakika içerisinde her iþlemde yeni bir 20 dk verir.
+                options.SlidingExpiration = true;
                 options.Cookie = new CookieBuilder()
                 {
                     HttpOnly = true,
-                    Name = "MiniShopApp.Security.Cookie",
-                    SameSite = SameSiteMode.Strict
+                    Name="MiniShopApp.Security.Cookie",
+                    SameSite=SameSiteMode.Strict
                 };
             });
 
@@ -79,6 +78,7 @@ namespace MiniShopApp.WebUI
                 Configuration["EmailSender:UserName"],
                 Configuration["EmailSender:Password"]
                 ));
+
             services.AddScoped<IProductRepository, EfCoreProductRepository>();
             services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
             services.AddScoped<IProductService, ProductManager>();
@@ -111,6 +111,23 @@ namespace MiniShopApp.WebUI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "adminrolelist",
+                    pattern: "admin/role/list",
+                    defaults: new { controller = "Admin", action = "RoleList" }
+                    );
+
+                endpoints.MapControllerRoute(
+                    name: "adminroleedit",
+                    pattern: "admin/role/{id}",
+                    defaults: new { controller = "Admin", action = "RoleEdit" }
+                    );
+
+                endpoints.MapControllerRoute(
+                    name: "adminrolecreate",
+                    pattern: "admin/role/create",
+                    defaults: new { controller = "Admin", action = "RoleCreate" }
+                    );
 
                 endpoints.MapControllerRoute(
                     name: "adminproductcreate",
