@@ -22,7 +22,7 @@ namespace MiniShopApp.WebUI.Controllers
     public class AdminController : Controller
     {
         private readonly IProductService _productService;
-        private readonly ICategoryService _categoryService;
+        private readonly ICategoryService _categoryService; 
         private RoleManager<IdentityRole> _roleManager;
         private UserManager<User> _userManager;
 
@@ -31,7 +31,7 @@ namespace MiniShopApp.WebUI.Controllers
             _productService = productService;
             _categoryService = categoryService;
             _roleManager = roleManager;
-            _userManager = userManager;
+            _userManager = userManager; 
         }
 
         public IActionResult UserList()
@@ -61,10 +61,11 @@ namespace MiniShopApp.WebUI.Controllers
             return Redirect("~/admin/user/list");
         }
 
-        public IActionResult RoleList()
+            public IActionResult RoleList()
         {
             return View(_roleManager.Roles);
         }
+
 
         public IActionResult RoleCreate()
         {
@@ -189,7 +190,7 @@ namespace MiniShopApp.WebUI.Controllers
                     Description = model.Description,
                     ImageUrl = model.ImageUrl,
                     IsApproved = model.IsApproved,
-                    IsHome = model.IsHome
+                    IsHome = model.IsHome 
                 };
                 _productService.Create(product, categoryIds);
 
@@ -260,9 +261,10 @@ namespace MiniShopApp.WebUI.Controllers
         {
             var entity = _productService.GetById(productId);
             _productService.Delete(entity);
+            TempData["Message"] = JobManager.CreateMessage("SİLME", $"{entity.Name} adlı ürün silindi!", "danger");
             return RedirectToAction("ProductList");
         }
 
-        
+
     }
 }

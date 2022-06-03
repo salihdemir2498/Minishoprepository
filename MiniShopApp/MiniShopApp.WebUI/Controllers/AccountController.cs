@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MiniShopApp.Core;
 using MiniShopApp.WebUI.EmailServices;
 using MiniShopApp.WebUI.Identity;
 using MiniShopApp.WebUI.Models;
@@ -100,7 +101,7 @@ namespace MiniShopApp.WebUI.Controllers
                 //Mail onay işlemleri
                 //TOKEN işlemleri
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                
+
                 var url = Url.Action("ConfirmEmail", "Account", new
                 {
                     userId = user.Id,
@@ -108,10 +109,10 @@ namespace MiniShopApp.WebUI.Controllers
                 });
                 //mail gönderme işlemleri
                 await _emailSender.SendEmailAsync(model.Email, "MiniShopApp Hesap Onaylama", $"Lütfen email hesabınızı onaylamak için <a href='https://localhost:5001{url}'>tıklayınız.</a>");
-                return RedirectToAction("Login", "Account"); 
+                return RedirectToAction("Login", "Account");
             }
 
-            CreateMessage("Bir sorun oluştu, lütfen tekrar deneyiniz", "danger");
+            TempData["Message"]= JobManager.CreateMessage("HATA","Bir sorun oluştu, lütfen tekrar deneyiniz", "danger");
             return View(model);
         }
 
@@ -128,12 +129,12 @@ namespace MiniShopApp.WebUI.Controllers
                 var result = await _userManager.ConfirmEmailAsync(user, token);
                 if (result.Succeeded)
                 {
-                    CreateMessage("Hesabınız onaylanmıştır","success");
+                    TempData["Message"]=JobManager.CreateMessage("","Hesabınız onaylanmıştır","success");
                     return View();
                 }
             }
 
-            CreateMessage("Hesabınız onaylanamadı. Lütfen bilgileri kontrol ederek, yeniden deneyiniz!","warning");
+            TempData["Message"]=JobManager.CreateMessage("","Hesabınız onaylanamadı. Lütfen bilgileri kontrol ederek, yeniden deneyiniz!","warning");
             return View();
         }
 
@@ -153,14 +154,14 @@ namespace MiniShopApp.WebUI.Controllers
         {
             if (String.IsNullOrEmpty(email))
             {
-                CreateMessage("Lütfen email adresini yazınız!", "warning");
+                TempData["Message"]=JobManager.CreateMessage("","Lütfen email adresini yazınız!", "warning");
                 return View();
             }
 
             var user = await _userManager.FindByEmailAsync(email);
             if (user==null)
             {
-                CreateMessage("Böyle bir mail adresi bulunamadı. Lütfen kontrol ederek yeniden deneyiniz.", "warning");
+                TempData["Message"]=JobManager.CreateMessage("","Böyle bir mail adresi bulunamadı. Lütfen kontrol ederek yeniden deneyiniz.", "warning");
                 return View();
             }
 
@@ -176,7 +177,7 @@ namespace MiniShopApp.WebUI.Controllers
                 "MiniShopApp Reset Password",
                 $"Parolanızı yeniden belirlemek için <a href='https://localhost:5001{url}'>tıklayınız.</a>"
                 );
-            CreateMessage("Parola değiştirmeniz için gerekli link mail adresinize yollanmıştır, lütfen kontrol ederek yönergeleri takip ediniz!", "warning");
+            TempData["Message"]=JobManager.CreateMessage("","Parola değiştirmeniz için gerekli link mail adresinize yollanmıştır, lütfen kontrol ederek yönergeleri takip ediniz!", "warning");
             return Redirect("~/");
         }
 
@@ -184,7 +185,7 @@ namespace MiniShopApp.WebUI.Controllers
         {
             if (userId == null || token == null)
             {
-                CreateMessage("Geçersiz işlem!", "danger");
+                TempData["Message"]=JobManager.CreateMessage("","Geçersiz işlem!", "danger");
                 return RedirectToAction("Index", "Home");
             }
             var model = new ResetPasswordModel() { Token = token };
@@ -200,27 +201,19 @@ namespace MiniShopApp.WebUI.Controllers
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user==null)
             {
-                CreateMessage("Böyle bir kullanıcı bulunamadı!", "warning");
+                TempData["Message"]=JobManager.CreateMessage("","Böyle bir kullanıcı bulunamadı!", "warning");
                 return Redirect("~/");
             }
 
             var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
             if (result.Succeeded)
             {
-                CreateMessage("Şifre değiştirme işleminiz başarıyla gerçekleşti.", "success");
+                TempData["Message"]=JobManager.CreateMessage("","Şifre değiştirme işleminiz başarıyla gerçekleşti.", "success");
                 return RedirectToAction("Login");
             }
-            CreateMessage("İşlem başarısız oldu, lütfen daha sonra tekrar deneyiniz!", "danger");
+            TempData["Message"]=JobManager.CreateMessage("","İşlem başarısız oldu, lütfen daha sonra tekrar deneyiniz!", "danger");
             return View(model);
         }
-        private void CreateMessage(string message, string alertType)
-        {
-            var msg = new AlertMessage()
-            {
-                Message = message,
-                AlertType = alertType
-            };
-            TempData["Message"] = JsonConvert.SerializeObject(msg);
-        }
+
     }
 }

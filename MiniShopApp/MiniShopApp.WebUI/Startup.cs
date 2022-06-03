@@ -112,16 +112,23 @@ namespace MiniShopApp.WebUI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                   name: "adminuserlist",
-                   pattern: "admin/user/list",
-                   defaults: new { controller = "Admin", action = "UserList" }
-                   );
+                    name: "adminuserlist",
+                    pattern: "admin/user/list",
+                    defaults: new { controller = "Admin", action = "UserList" }
+                    );
 
                 endpoints.MapControllerRoute(
-                      name: "adminuseredit",
-                      pattern: "admin/user/{id}",
-                      defaults: new { controller = "Admin", action = "UserEdit" }
-                      );
+                    name: "adminusercreate",
+                    pattern: "admin/user/create",
+                    defaults: new { controller = "Admin", action = "UserCreate" }
+                    );
+
+
+                endpoints.MapControllerRoute(
+                    name: "adminuseredit",
+                    pattern: "admin/user/{id}",
+                    defaults: new { controller = "Admin", action = "UserEdit" }
+                    );
 
                 endpoints.MapControllerRoute(
                     name: "adminrolelist",
@@ -130,16 +137,18 @@ namespace MiniShopApp.WebUI
                     );
 
                 endpoints.MapControllerRoute(
+                    name: "adminrolecreate",
+                    pattern: "admin/role/create",
+                    defaults: new { controller = "Admin", action = "RoleCreate" }
+                    );
+
+                endpoints.MapControllerRoute(
                     name: "adminroleedit",
                     pattern: "admin/role/{id}",
                     defaults: new { controller = "Admin", action = "RoleEdit" }
                     );
 
-                endpoints.MapControllerRoute(
-                    name: "adminrolecreate",
-                    pattern: "admin/role/create",
-                    defaults: new { controller = "Admin", action = "RoleCreate" }
-                    );
+
 
                 endpoints.MapControllerRoute(
                     name: "adminproductcreate",

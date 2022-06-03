@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tWKVEfhrXbG6ikD68vaIQ5DM/xsx1wFcXdtnYnObn4wokqqy2Jd5abetERsztkr454A3HKSuqZNG1Rnn36h12w==",
+  "dgSpecHash": "NbfpGIp9kTyCqYpESskwYTp/SMtwI795EGSt0ugPsIsKx9/SHW5w2ydgwIzVbEUda6t2R8xax19ZBn3N9Q5lBQ==",
   "success": true,
-  "projectFilePath": "D:\\Users\\salih\\source\\repos\\Minishoprepository\\MiniShopApp\\MiniShopApp.WebUI\\MiniShopApp.WebUI.csproj",
+  "projectFilePath": "C:\\Users\\user\\Desktop\\zcvbb\\Web_6_Projects-Validation\\Week_14\\MiniShopApp\\MiniShopApp.WebUI\\MiniShopApp.WebUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.16\\microsoft.aspnetcore.cryptography.internal.5.0.16.nupkg.sha512",
