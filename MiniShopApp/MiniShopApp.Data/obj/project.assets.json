@@ -1097,11 +1097,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Desktop\\zcvbb\\Web_6_Projects-Validation\\Week_14\\MiniShopApp\\MiniShopApp.Data\\MiniShopApp.Data.csproj",
+      "projectUniqueName": "D:\\Users\\salih\\source\\repos\\Minishoprepository\\MiniShopApp\\MiniShopApp.Data\\MiniShopApp.Data.csproj",
       "projectName": "MiniShopApp.Data",
-      "projectPath": "C:\\Users\\user\\Desktop\\zcvbb\\Web_6_Projects-Validation\\Week_14\\MiniShopApp\\MiniShopApp.Data\\MiniShopApp.Data.csproj",
+      "projectPath": "D:\\Users\\salih\\source\\repos\\Minishoprepository\\MiniShopApp\\MiniShopApp.Data\\MiniShopApp.Data.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Desktop\\zcvbb\\Web_6_Projects-Validation\\Week_14\\MiniShopApp\\MiniShopApp.Data\\obj\\",
+      "outputPath": "D:\\Users\\salih\\source\\repos\\Minishoprepository\\MiniShopApp\\MiniShopApp.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -1124,8 +1124,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\user\\Desktop\\zcvbb\\Web_6_Projects-Validation\\Week_14\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj": {
-              "projectPath": "C:\\Users\\user\\Desktop\\zcvbb\\Web_6_Projects-Validation\\Week_14\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj"
+            "D:\\Users\\salih\\source\\repos\\Minishoprepository\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj": {
+              "projectPath": "D:\\Users\\salih\\source\\repos\\Minishoprepository\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj"
             }
           }
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\zcvbb\\Web_6_Projects-Validation\\Week_14\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj": {}
+    "D:\\Users\\salih\\source\\repos\\Minishoprepository\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\zcvbb\\Web_6_Projects-Validation\\Week_14\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj": {
+    "D:\\Users\\salih\\source\\repos\\Minishoprepository\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\zcvbb\\Web_6_Projects-Validation\\Week_14\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj",
+        "projectUniqueName": "D:\\Users\\salih\\source\\repos\\Minishoprepository\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj",
         "projectName": "MiniShopApp.Entity",
-        "projectPath": "C:\\Users\\user\\Desktop\\zcvbb\\Web_6_Projects-Validation\\Week_14\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj",
+        "projectPath": "D:\\Users\\salih\\source\\repos\\Minishoprepository\\MiniShopApp\\MiniShopApp.Entity\\MiniShopApp.Entity.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\zcvbb\\Web_6_Projects-Validation\\Week_14\\MiniShopApp\\MiniShopApp.Entity\\obj\\",
+        "outputPath": "D:\\Users\\salih\\source\\repos\\Minishoprepository\\MiniShopApp\\MiniShopApp.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

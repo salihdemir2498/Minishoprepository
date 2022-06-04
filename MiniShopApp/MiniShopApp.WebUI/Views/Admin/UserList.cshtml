@@ -7,7 +7,17 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#userList').DataTable();
+            $('#userList').DataTable(
+                {
+                    lengthMenu: [
+                        [2, 5, 10, 20, 40, -1],
+                        [2, 5, 10, 20, 40, "Tümü"]
+                    ],
+                    language: {
+                        url:"//cdn.datatables.net/plug-ins/1.12.1/i18n/tr.json"
+                    }
+                }
+            );
         });
     </script>
 }
