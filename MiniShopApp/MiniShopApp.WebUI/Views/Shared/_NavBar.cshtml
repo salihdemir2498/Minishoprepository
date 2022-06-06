@@ -8,7 +8,7 @@
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <div>
-                    <ul class="navbar-nav flex-grow-1">
+                    <div><ul class="navbar-nav flex-grow-1">
 
 
                         <li class="nav-item">
@@ -17,6 +17,10 @@
 
                         @if (User.Identity.IsAuthenticated)
                         {
+                            <li class="nav-item">
+                                <a href="card" class="nav-link text-dark">Card</a>
+                            </li>
+
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
@@ -29,10 +33,9 @@
                                     <a href="/admin/user/list" class="nav-link text-dark">Users</a>
                                 </li>
                             }
-
                         }
 
-                    </ul>
+                    </ul></div>
                 </div>
                 <div>
 
