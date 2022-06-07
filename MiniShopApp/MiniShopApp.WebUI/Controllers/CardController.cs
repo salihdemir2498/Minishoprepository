@@ -41,5 +41,28 @@ namespace MiniShopApp.WebUI.Controllers
             };
             return View(model);
         }
+
+        [HttpPost]
+        public IActionResult AddToCard(int productId, int quantity)
+        {
+            //User bilgisinden yararlanarak UserId bulunacak.
+            //UserId, productId, quantity bilgilerini kullanıp bize karta ürün ekleme
+            //işlemini yapıp dönecek bir metot hazırlayalım
+            var userId = _userManager.GetUserId(User);
+            _cardService.AddToCard(userId, productId, quantity);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteFromCard(int productId)
+        {
+            var userId = _userManager.GetUserId(User);
+            _cardService.DeleteFromCard(userId,productId);
+            return RedirectToAction("Index");
+        }
+        public IActionResult CheckOut()
+        {
+            return View();
+        }
     }
 }
