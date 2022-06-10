@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MiniShopApp.Business.Abstract;
 using MiniShopApp.Core;
+using MiniShopApp.Entity;
 using MiniShopApp.WebUI.Identity;
 using MiniShopApp.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using OrderItem = MiniShopApp.Entity.OrderItem;
 
 namespace MiniShopApp.WebUI.Controllers
 {
@@ -20,11 +22,13 @@ namespace MiniShopApp.WebUI.Controllers
     {
         private ICardService _cardService;
         private UserManager<User> _userManager;
+        private IOrderService _orderService;
 
-        public CardController(ICardService cardService, UserManager<User> userManager)
+        public CardController(ICardService cardService, UserManager<User> userManager, IOrderService orderService)
         {
             _cardService = cardService;
             _userManager = userManager;
+            _orderService = orderService;
         }
 
         public IActionResult Index()
@@ -110,8 +114,8 @@ namespace MiniShopApp.WebUI.Controllers
                 var payment = PaymentProcess(orderModel);
                 if (payment.Status=="success")
                 {
-                    //SaveOrder();
-                    //ClearCard();
+                    SaveOrder(orderModel,payment,userId);
+                    _cardService.DeleteFromCardItems();
                     TempData["Message"] = JobManager.CreateMessage("BİLGİ","Ödemeniz başarıyla gerçekleşmiştir!","success");
                     return Redirect("~/");
                 }
@@ -122,6 +126,67 @@ namespace MiniShopApp.WebUI.Controllers
                 }
             }
             return View(orderModel);
+        }
+
+        private void SaveOrder(OrderModel orderModel, Payment payment, string userId)
+        {
+            var order = new Order();
+            order.OrderNumber = new Random().Next(111111111, 999999999).ToString();
+            order.OrderState = EnumOrderState.Completed;
+            order.PaymentType = EnumPaymentType.CreditCard;
+            order.PaymentId = payment.PaymentId;
+            order.ConversationId = payment.ConversationId;
+            order.OrderDate = new DateTime();
+            order.FirstName = orderModel.FirstName;
+            order.LastName = orderModel.LastName;
+            order.UserId = userId;
+            order.Address = orderModel.Address;
+            order.City = orderModel.City;
+            order.Phone = orderModel.Phone;
+            order.Email = orderModel.Email;
+            order.Note = orderModel.Note;
+
+            order.OrderItems = new List<OrderItem>();
+            foreach (var item in orderModel.CardModel.CardItems)
+            {
+                var orderItem = new OrderItem()
+                { 
+                    Price=item.Price,
+                    Quantity=item.Quantity,
+                    ProductId=item.ProductId,
+                };
+                order.OrderItems.Add(orderItem);
+            }
+            _orderService.Create(order);
+        }
+
+        private static int LuhnControl(List<int> numbers, int toplam = 0)
+        {
+
+
+            if (numbers.Count == 16)
+            {
+                for (int i = 0; i < numbers.Count; i++)
+                {
+                    if (i % 2 == 1)
+                    {
+                        if (numbers[i] > 9)
+                        {
+                            numbers[i] = (numbers[i] / 10) + (numbers[i] % 10);
+                        }
+
+
+                        toplam += 2 * numbers[i];
+                        if (toplam % 10 == 0)
+                        {
+                            return toplam;
+                        }
+                    }
+
+                }
+            }
+            return 1;
+
         }
 
         private Payment PaymentProcess(OrderModel orderModel)
@@ -144,6 +209,7 @@ namespace MiniShopApp.WebUI.Controllers
 
             PaymentCard paymentCard = new PaymentCard();
             paymentCard.CardHolderName = orderModel.CardName;
+            //Card number Luhn Algoritması ile kontrol edilmeli 
             paymentCard.CardNumber = orderModel.CardNumber;
             paymentCard.ExpireMonth = orderModel.ExpirationMonth;
             paymentCard.ExpireYear = orderModel.ExpirationYear;

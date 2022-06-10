@@ -20,6 +20,15 @@ namespace MiniShopApp.Data.Concrete.EfCore
             }
         }
 
+        public void DeleteFromCardItems(int cardId)
+        {
+            using (var context = new MiniShopContext())
+            {
+                var query = @"DELETE FROM CardItems WHERE CardId=@p0";
+                context.Database.ExecuteSqlRaw(query, cardId);
+            }
+        }
+
         public Card GetCardByUserId(string userId)
         {
             using (var context = new MiniShopContext())

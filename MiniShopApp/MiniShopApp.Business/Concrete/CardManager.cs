@@ -51,9 +51,23 @@ namespace MiniShopApp.Business.Concrete
             }
         }
 
+        public void DeleteFromCardItems(int cardId)
+        {
+            var card = GetCardId(cardId);
+            if (card != null)
+            {
+                _cardRepository.DeleteFromCardItems(cardId);
+            }
+        }
+
         public Card GetCardByUserId(string userId)
         {
             return _cardRepository.GetCardByUserId(userId);
+        }
+
+        public Card GetCardId(int cardId)
+        {
+            return _cardRepository.GetById(cardId);
         }
 
         public void InitializeCard(string userId)
