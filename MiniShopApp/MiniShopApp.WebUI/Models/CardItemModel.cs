@@ -2,7 +2,7 @@
 {
     public class CardItemModel
     {
-        public int CartItemId { get; set; }
+        public int CardItemId { get; set; }
         public int ProductId { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }

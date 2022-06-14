@@ -132,12 +132,13 @@ namespace MiniShopApp.WebUI.Controllers
                 var result = await _userManager.ConfirmEmailAsync(user, token);
                 if (result.Succeeded)
                 {
+                    //Card oluşturacağız
                     _cardService.InitializeCard(userId);
                     TempData["Message"]=JobManager.CreateMessage("","Hesabınız onaylanmıştır","success");
                     return View();
                 }
             }
-            
+
             TempData["Message"]=JobManager.CreateMessage("","Hesabınız onaylanamadı. Lütfen bilgileri kontrol ederek, yeniden deneyiniz!","warning");
             return View();
         }

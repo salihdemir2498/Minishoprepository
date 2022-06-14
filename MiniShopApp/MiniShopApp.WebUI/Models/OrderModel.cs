@@ -20,5 +20,6 @@ namespace MiniShopApp.WebUI.Models
         public string ExpirationYear { get; set; }
         public string Cvc { get; set; }
         public CardModel CardModel { get; set; }
+
     }
 }

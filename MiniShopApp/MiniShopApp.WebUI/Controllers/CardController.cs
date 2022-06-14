@@ -30,7 +30,6 @@ namespace MiniShopApp.WebUI.Controllers
             _userManager = userManager;
             _orderService = orderService;
         }
-
         public IActionResult Index()
         {
             var card = _cardService.GetCardByUserId(_userManager.GetUserId(User));
@@ -39,23 +38,52 @@ namespace MiniShopApp.WebUI.Controllers
                 CardId = card.Id,
                 CardItems = card.CardItems.Select(i => new CardItemModel()
                 {
-                    CartItemId=i.Id,
-                    ProductId=i.ProductId,
-                    Name=i.Product.Name,
-                    Price=(double)i.Product.Price,
-                    ImageUrl=i.Product.ImageUrl,
-                    Quantity=i.Quantity
+                    CardItemId = i.Id,
+                    ProductId = i.ProductId,
+                    Name = i.Product.Name,
+                    Price = (double)i.Product.Price,
+                    ImageUrl = i.Product.ImageUrl,
+                    Quantity = i.Quantity
                 }).ToList()
             };
             return View(model);
         }
+        public IActionResult GetOrders()
+        {
+            var userId = _userManager.GetUserId(User);
+            var orders = _orderService.GetOrders(userId);
+            var orderListModel = new List<OrderListModel>();
+            OrderListModel orderModel;
+            foreach (var order in orders)
+            {
+                orderModel = new OrderListModel();
+                orderModel.OrderId = order.Id;
+                orderModel.OrderNumber = order.OrderNumber;
+                orderModel.OrderDate = order.OrderDate;
+                orderModel.FirstName = order.FirstName;
+                orderModel.LastName = order.LastName;
+                orderModel.Address = order.Address;
+                orderModel.City = order.City;
+                orderModel.Phone = order.Phone;
+                orderModel.Email = order.Email;
+                orderModel.OrderState = order.OrderState;
+                orderModel.PaymentType = order.PaymentType;
+                orderModel.OrderItems = order.OrderItems.Select(i => new OrderItemModel()
+                {
+                    OrderItemId=i.Id,
+                    Name=i.Product.Name,
+                    Price=(double)i.Price,
+                    Quantity=i.Quantity,
+                    ImageUrl=i.Product.ImageUrl
+                }).ToList();
+                orderListModel.Add(orderModel);
+            }
+            return View("Orders",orderListModel);
 
+        }
         [HttpPost]
         public IActionResult AddToCard(int productId, int quantity)
         {
-            //User bilgisinden yararlanarak UserId bulunacak.
-            //UserId, productId, quantity bilgilerini kullanıp bize karta ürün ekleme
-            //işlemini yapıp dönecek bir metot hazırlayalım
             var userId = _userManager.GetUserId(User);
             _cardService.AddToCard(userId, productId, quantity);
             return RedirectToAction("Index");
@@ -65,7 +93,7 @@ namespace MiniShopApp.WebUI.Controllers
         public IActionResult DeleteFromCard(int productId)
         {
             var userId = _userManager.GetUserId(User);
-            _cardService.DeleteFromCard(userId,productId);
+            _cardService.DeleteFromCard(userId, productId);
             return RedirectToAction("Index");
         }
         public IActionResult CheckOut()
@@ -78,14 +106,15 @@ namespace MiniShopApp.WebUI.Controllers
                 CardId = card.Id,
                 CardItems = card.CardItems.Select(i => new CardItemModel()
                 {
-                    CartItemId=i.Id,
-                    ProductId=i.ProductId,
-                    Name=i.Product.Name,
-                    Price=(double)i.Product.Price,
-                    ImageUrl=i.Product.ImageUrl,
-                    Quantity=i.Quantity
+                    CardItemId = i.Id,
+                    ProductId = i.ProductId,
+                    Name = i.Product.Name,
+                    Price = (double)i.Product.Price,
+                    ImageUrl = i.Product.ImageUrl,
+                    Quantity = i.Quantity
                 }).ToList()
             };
+
             return View(orderModel);
         }
 
@@ -101,28 +130,32 @@ namespace MiniShopApp.WebUI.Controllers
                     CardId = card.Id,
                     CardItems = card.CardItems.Select(i => new CardItemModel()
                     {
-                        CartItemId=i.Id,
-                        ProductId=i.ProductId,
-                        Name=i.Product.Name,
-                        Price=(double)i.Product.Price,
-                        ImageUrl=i.Product.ImageUrl,
-                        Quantity=i.Quantity
+                        CardItemId = i.Id,
+                        ProductId = i.ProductId,
+                        Name = i.Product.Name,
+                        Price = (double)i.Product.Price,
+                        ImageUrl = i.Product.ImageUrl,
+                        Quantity = i.Quantity
                     }).ToList()
                 };
                 //Ödeme işlemine başla
-
+                if (!CardNumberControl(orderModel.CardNumber))
+                {
+                    TempData["Message"] = JobManager.CreateMessage("HATA", "Kart numarasını kontrol ediniz!", "danger");
+                    return View(orderModel);
+                }
                 var payment = PaymentProcess(orderModel);
                 if (payment.Status=="success")
                 {
-                    SaveOrder(orderModel,payment,userId);
-                    _cardService.DeleteFromCardItems();
-                    TempData["Message"] = JobManager.CreateMessage("BİLGİ","Ödemeniz başarıyla gerçekleşmiştir!","success");
+                    SaveOrder(orderModel, payment, userId);
+                    _cardService.ClearCard(card.Id);
+                    TempData["Message"] = JobManager.CreateMessage("BİLGİ", "Ödemeniz başarıyla gerçekleştirilmiştir!", "success");
                     return Redirect("~/");
                 }
                 else
                 {
-                    TempData["Message"] = JobManager.CreateMessage("BİLGİ", payment.ErrorMessage , "danger");
-                    return View(orderModel);
+                    TempData["Message"] = JobManager.CreateMessage("DİKKAT!", payment.ErrorMessage , "danger");
+                   
                 }
             }
             return View(orderModel);
@@ -136,7 +169,7 @@ namespace MiniShopApp.WebUI.Controllers
             order.PaymentType = EnumPaymentType.CreditCard;
             order.PaymentId = payment.PaymentId;
             order.ConversationId = payment.ConversationId;
-            order.OrderDate = new DateTime();
+            order.OrderDate = DateTime.Now;
             order.FirstName = orderModel.FirstName;
             order.LastName = orderModel.LastName;
             order.UserId = userId;
@@ -150,55 +183,27 @@ namespace MiniShopApp.WebUI.Controllers
             foreach (var item in orderModel.CardModel.CardItems)
             {
                 var orderItem = new OrderItem()
-                { 
+                {
                     Price=item.Price,
                     Quantity=item.Quantity,
-                    ProductId=item.ProductId,
+                    ProductId=item.ProductId
                 };
                 order.OrderItems.Add(orderItem);
             }
             _orderService.Create(order);
-        }
-
-        private static int LuhnControl(List<int> numbers, int toplam = 0)
-        {
-
-
-            if (numbers.Count == 16)
-            {
-                for (int i = 0; i < numbers.Count; i++)
-                {
-                    if (i % 2 == 1)
-                    {
-                        if (numbers[i] > 9)
-                        {
-                            numbers[i] = (numbers[i] / 10) + (numbers[i] % 10);
-                        }
-
-
-                        toplam += 2 * numbers[i];
-                        if (toplam % 10 == 0)
-                        {
-                            return toplam;
-                        }
-                    }
-
-                }
-            }
-            return 1;
 
         }
 
         private Payment PaymentProcess(OrderModel orderModel)
         {
             Options options = new Options();
-            options.ApiKey = "sandbox-i6eS7vk2P5B55jKmFopT3LLLqaQYXMQg";
-            options.SecretKey = "sandbox-P8XDsTPNW9dWfM6G1ynCqQoWezLuXqG0";
+            options.ApiKey = "sandbox-2cOZxeLZDfeUJEwwf7pn6rxDfLHm5Qyv";
+            options.SecretKey = "sandbox-LeC9S7gFn8WZWxaomdxOggXfkBrlsYBb";
             options.BaseUrl = "https://sandbox-api.iyzipay.com";
 
             CreatePaymentRequest request = new CreatePaymentRequest();
             request.Locale = Locale.TR.ToString();
-            request.ConversationId = new Random().Next(111111111,999999999).ToString();
+            request.ConversationId = new Random().Next(111111111, 999999999).ToString();
             request.Price = orderModel.CardModel.TotalPrice().ToString();
             request.PaidPrice = orderModel.CardModel.TotalPrice().ToString();
             request.Currency = Currency.TRY.ToString();
@@ -209,7 +214,7 @@ namespace MiniShopApp.WebUI.Controllers
 
             PaymentCard paymentCard = new PaymentCard();
             paymentCard.CardHolderName = orderModel.CardName;
-            //Card number Luhn Algoritması ile kontrol edilmeli 
+            //Card Number Luhn Algoritması ile kontrol edilmeli ve doğru ise buraya atanmalıdır.
             paymentCard.CardNumber = orderModel.CardNumber;
             paymentCard.ExpireMonth = orderModel.ExpirationMonth;
             paymentCard.ExpireYear = orderModel.ExpirationYear;
@@ -234,7 +239,7 @@ namespace MiniShopApp.WebUI.Controllers
             request.Buyer = buyer;
 
             Address shippingAddress = new Address();
-            shippingAddress.ContactName = "Jane Doe";
+            shippingAddress.ContactName = "Engin Niyazi Ergül";
             shippingAddress.City = "Istanbul";
             shippingAddress.Country = "Turkey";
             shippingAddress.Description = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
@@ -260,11 +265,58 @@ namespace MiniShopApp.WebUI.Controllers
                 basketItem.Price = (item.Quantity*item.Price).ToString();
                 basketItems.Add(basketItem);
             }
-
-
             request.BasketItems = basketItems;
 
             return Payment.Create(request, options);
+        }
+
+        private int NumberControl(string number)
+        {
+            int numberLength = number.Length;
+            if (numberLength==1)
+            {
+                return Convert.ToInt32(number);
+            }
+            
+            int total = 0;
+            for (int i = 0; i < numberLength; i++)
+            {
+                total += Convert.ToInt32(number[i].ToString());
+            }
+            return total;
+        }
+        private bool CardNumberControl(string cardNumber)
+        {
+            var cardNumberLength = cardNumber.Length;
+            int total = 0;
+            if (cardNumberLength!=16)
+            {
+                return false;
+            }
+            else
+            {
+                int ovenTotal = 0;
+                int oddTotal = 0;
+                
+                for (int i = 0; i < cardNumberLength; i++)
+                {
+                    int nextNumber = Convert.ToInt32(cardNumber[i].ToString());
+                    if (i%2==0)
+                    {
+                        oddTotal += NumberControl((nextNumber * 2).ToString());
+                    }
+                    else
+                    {
+                        ovenTotal += nextNumber ;
+                    }
+                }
+                total = ovenTotal + oddTotal;
+            }
+            if (total%10==0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

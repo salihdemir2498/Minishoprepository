@@ -11,24 +11,24 @@ namespace MiniShopApp.Business.Concrete
 {
     public class CardManager : ICardService
     {
-        private ICardRepository _cardRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CardManager(ICardRepository cardRepository)
+        public CardManager(IUnitOfWork unitOfWork)
         {
-            this._cardRepository = cardRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public void AddToCard(string userId, int productId, int quantity)
         {
             var card = GetCardByUserId(userId);
-            if (card != null)
+            if (card!=null)
             {
                 var index = card.CardItems.FindIndex(i => i.ProductId == productId);
-                if (index < 0) //eklemek istediğim ürün sepette yoksa
+                if (index<0)
                 {
-                    card.CardItems.Add(new CardItem() 
-                    { 
-                        ProductId = productId,
+                    card.CardItems.Add(new CardItem()
+                    {
+                        ProductId=productId,
                         Quantity=quantity,
                         CardId=card.Id
                     });
@@ -37,43 +37,35 @@ namespace MiniShopApp.Business.Concrete
                 {
                     card.CardItems[index].Quantity += quantity;
                 }
-                _cardRepository.Update(card);
+                _unitOfWork.Cards.Update(card);
+                _unitOfWork.Save();
             }
+        }
 
+        public void ClearCard(int cardId)
+        {
+            _unitOfWork.Cards.ClearCard(cardId);
         }
 
         public void DeleteFromCard(string userId, int productId)
         {
             var card = GetCardByUserId(userId);
-            if (card != null)
+            if (card!=null)
             {
-                _cardRepository.DeleteFromCard(card.Id,productId);
-            }
-        }
-
-        public void DeleteFromCardItems(int cardId)
-        {
-            var card = GetCardId(cardId);
-            if (card != null)
-            {
-                _cardRepository.DeleteFromCardItems(cardId);
+                _unitOfWork.Cards.DeleteFromCard(card.Id,productId);
             }
         }
 
         public Card GetCardByUserId(string userId)
         {
-            return _cardRepository.GetCardByUserId(userId);
-        }
-
-        public Card GetCardId(int cardId)
-        {
-            return _cardRepository.GetById(cardId);
+            return _unitOfWork.Cards.GetCardByUserId(userId);
         }
 
         public void InitializeCard(string userId)
         {
             var card = new Card() { UserId = userId };
-            _cardRepository.Create(card);
+            _unitOfWork.Cards.Create(card);
+            _unitOfWork.Save();
         }
     }
 }

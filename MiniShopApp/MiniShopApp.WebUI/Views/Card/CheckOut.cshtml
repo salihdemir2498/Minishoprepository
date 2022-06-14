@@ -17,7 +17,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <label>Address:</label>
+                    <label>Addres:</label>
                     <textarea asp-for="@Model.Address" class="form-control"></textarea>
                 </div>
             </div>
@@ -60,12 +60,11 @@
                     <input asp-for="@Model.Cvc" class="form-control" />
                 </div>
             </div>
-            <button type="submit" class="btn btn-sm btn-success">Satın Al</button>
-
+            <button type="submit" class="btn btn-sm btn-success">Pay</button>
         </form>
     </div>
     <div class="col-md-4">
-        <h6>Order Summers</h6>
+        <h6>Order Summary</h6>
         <span>Summary Info</span>
         <ul class="list-group">
             @foreach (var item in Model.CardModel.CardItems)
@@ -81,9 +80,10 @@
             }
 
             <li class="list-group-item d-flex justify-content-between">
-                <span>Toplam:(TL)</span>
-                <strong class="text-break">@Model.CardModel.TotalPrice()</strong>
+                <span>TOPLAM:(TL)</span>
+                <strong class="text-muted">@Model.CardModel.TotalPrice()</strong>
             </li>
         </ul>
+        
     </div>
 </div>
