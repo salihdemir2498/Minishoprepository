@@ -15,6 +15,8 @@ namespace MiniShopApp.Data.Config
         {
             builder.HasKey(p => p.ProductId);
             builder.Property(p => p.Name).IsRequired().HasMaxLength(100);
+            builder.Property(p => p.DateAdded).HasDefaultValueSql("date('now')"); //sqlite için
+            //builder.Property(p => p.DateAdded).HasDefaultValueSql("getdate()"); //sqserver için
         }
     }
 }

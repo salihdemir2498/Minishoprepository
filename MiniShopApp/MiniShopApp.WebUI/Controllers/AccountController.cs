@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MiniShopApp.Business.Abstract;
 using MiniShopApp.Core;
 using MiniShopApp.WebUI.EmailServices;
+using MiniShopApp.WebUI.Extensions;
 using MiniShopApp.WebUI.Identity;
 using MiniShopApp.WebUI.Models;
 using Newtonsoft.Json;
@@ -123,6 +124,12 @@ namespace MiniShopApp.WebUI.Controllers
         {
             if (userId==null || token == null)
             {
+                TempData.Put("message", new AlertMessage()
+                {
+                    Title="Geçersiz token",
+                    Message="Geçersiz Token",
+                    AlertType="danger"
+                });
                 return View();
             }
 
@@ -132,14 +139,22 @@ namespace MiniShopApp.WebUI.Controllers
                 var result = await _userManager.ConfirmEmailAsync(user, token);
                 if (result.Succeeded)
                 {
-                    //Card oluşturacağız
-                    _cardService.InitializeCard(userId);
-                    TempData["Message"]=JobManager.CreateMessage("","Hesabınız onaylanmıştır","success");
+                    TempData.Put("message", new AlertMessage()
+                    {
+                        Title = "Hesabınız Onaylandı",
+                        Message = "Hesabınız Onaylandı",
+                        AlertType = "success"
+                    });
                     return View();
                 }
             }
 
-            TempData["Message"]=JobManager.CreateMessage("","Hesabınız onaylanamadı. Lütfen bilgileri kontrol ederek, yeniden deneyiniz!","warning");
+            TempData.Put("message", new AlertMessage()
+            {
+                Title = "Hesabınız Onaylanmadı",
+                Message = "Hesabınız Onaylanmadı",
+                AlertType = "warning"
+            });
             return View();
         }
 
@@ -147,6 +162,12 @@ namespace MiniShopApp.WebUI.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            TempData.Put("message", new AlertMessage()
+            {
+                Title = "Oturum Kapatıldı",
+                Message = "Hesabınız güvenli bir şekilde kapatıldı.",
+                AlertType = "warning"
+            });
             return Redirect("~/");
         }
 
