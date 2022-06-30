@@ -5,7 +5,6 @@ D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\MiniShopApp.WebUI.runtimeconfig.json
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\MiniShopApp.WebUI.runtimeconfig.dev.json
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\MiniShopApp.WebUI.dll
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\ref\MiniShopApp.WebUI.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\MiniShopApp.WebUI.pdb
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\MiniShopApp.WebUI.Views.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\MiniShopApp.WebUI.Views.pdb
@@ -64,7 +63,6 @@ D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.RazorAssemblyInfo.cache
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.RazorAssemblyInfo.cs
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\staticwebassets\MiniShopApp.WebUI.StaticWebAssets.Manifest.cache
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\staticwebassets\MiniShopApp.WebUI.StaticWebAssets.xml
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\scopedcss\bundle\MiniShopApp.WebUI.styles.css
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.TagHelpers.input.cache
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\MiniShopApp.WebUI.TagHelpers.output.cache
@@ -206,3 +204,5 @@ D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\Razor\Views\Shared\_ResultMessage.cshtml.g.cs
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\Razor\Views\Home\GetProductsFromRestFullApi.cshtml.g.cs
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.WebUI\obj\Debug\net5.0\refint\MiniShopApp.WebUI.dll

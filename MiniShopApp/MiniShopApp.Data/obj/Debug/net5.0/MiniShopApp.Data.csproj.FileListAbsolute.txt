@@ -2,7 +2,6 @@ D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\bin\
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\bin\Debug\net5.0\MiniShopApp.Data.runtimeconfig.json
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\bin\Debug\net5.0\MiniShopApp.Data.runtimeconfig.dev.json
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\bin\Debug\net5.0\MiniShopApp.Data.dll
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\bin\Debug\net5.0\ref\MiniShopApp.Data.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\bin\Debug\net5.0\MiniShopApp.Data.pdb
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\bin\Debug\net5.0\MiniShopApp.Entity.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\bin\Debug\net5.0\MiniShopApp.Entity.pdb
@@ -16,3 +15,4 @@ D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\obj\
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\obj\Debug\net5.0\ref\MiniShopApp.Data.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\obj\Debug\net5.0\MiniShopApp.Data.pdb
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\obj\Debug\net5.0\MiniShopApp.Data.genruntimeconfig.cache
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Data\obj\Debug\net5.0\refint\MiniShopApp.Data.dll

@@ -1,6 +1,5 @@
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Business\bin\Debug\net5.0\MiniShopApp.Business.deps.json
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Business\bin\Debug\net5.0\MiniShopApp.Business.dll
-D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Business\bin\Debug\net5.0\ref\MiniShopApp.Business.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Business\bin\Debug\net5.0\MiniShopApp.Business.pdb
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Business\bin\Debug\net5.0\MiniShopApp.Data.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Business\bin\Debug\net5.0\MiniShopApp.Entity.dll
@@ -15,3 +14,4 @@ D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Business\
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Business\obj\Debug\net5.0\MiniShopApp.Business.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Business\obj\Debug\net5.0\ref\MiniShopApp.Business.dll
 D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Business\obj\Debug\net5.0\MiniShopApp.Business.pdb
+D:\Users\salih\source\repos\Minishoprepository\MiniShopApp\MiniShopApp.Business\obj\Debug\net5.0\refint\MiniShopApp.Business.dll

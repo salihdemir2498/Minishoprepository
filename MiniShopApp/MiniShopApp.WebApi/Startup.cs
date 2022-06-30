@@ -21,6 +21,7 @@ namespace MiniShopApp.WebApi
 {
     public class Startup
     {
+        readonly string MyPolicy = "_myAllowAll";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -41,10 +42,16 @@ namespace MiniShopApp.WebApi
             services.AddScoped<IOrderService, OrderManager>();
 
             services.AddControllers();
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MiniShopApp.WebApi", Version = "v1" });
-            //});
+
+            services.AddCors(
+                options => {
+                    options.AddPolicy(
+                        name: MyPolicy,
+                        policy =>
+                        {
+                            policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                        });
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +67,8 @@ namespace MiniShopApp.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(MyPolicy);
 
             app.UseAuthorization();
 
